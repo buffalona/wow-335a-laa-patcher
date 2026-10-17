@@ -1,0 +1,30 @@
+# Le dépôt contient uniquement le code et sa documentation.
+*.exe
+*.dll
+*.bak
+*.backup
+*.old
+*.orig
+*.zip
+*.7z
+*.rar
+*.log
+*.tmp
+
+# Dossiers de jeu et sauvegardes locales.
+WTF/
+Cache/
+Data/
+Interface/
+Backups/
+Sauvegardes/
+backup/
+backups/
+*.save
+*.sav
+
+# Fichiers temporaires de l'éditeur et de Windows.
+.vs/
+.vscode/
+Thumbs.db
+Desktop.ini
