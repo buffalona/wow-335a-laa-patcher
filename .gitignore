@@ -1,4 +1,4 @@
-# Le dépôt contient uniquement le code et sa documentation.
+# Keep only source code and documentation in this repository.
 *.exe
 *.dll
 *.bak
@@ -11,7 +11,7 @@
 *.log
 *.tmp
 
-# Dossiers de jeu et sauvegardes locales.
+# Game folders and local backups.
 WTF/
 Cache/
 Data/
@@ -23,7 +23,7 @@ backups/
 *.save
 *.sav
 
-# Fichiers temporaires de l'éditeur et de Windows.
+# Editor and Windows temporary files.
 .vs/
 .vscode/
 Thumbs.db

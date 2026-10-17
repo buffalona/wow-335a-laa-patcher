@@ -1,31 +1,33 @@
-# WoW 3.3.5a — patch Large Address Aware
+# WoW 3.3.5a — Large Address Aware patch
 
-Petit script PowerShell qui crée `Wow_LAA.exe` à partir de **votre propre sauvegarde** `Wow.exe.backup`, puis active le bit Large Address Aware (LAA) de son en-tête PE. Il ne modifie pas le fichier source.
+This PowerShell script creates `Wow_LAA.exe` from **your own backup** named `Wow.exe.backup` and enables the Large Address Aware (LAA) flag in its PE header. It leaves the source file unchanged.
 
-Ce dépôt ne contient ni `Wow.exe`, ni `Wow_LAA.exe`, ni fichiers du jeu. Vous devez posséder votre propre installation.
+This repository contains no `Wow.exe`, `Wow_LAA.exe`, or game files. You need your own installation.
 
-## Utilisation
+[Lire ce guide en français](README.fr.md).
 
-1. Fermez le jeu. Dans son dossier, assurez-vous d'avoir une sauvegarde nommée `Wow.exe.backup` provenant de votre installation.
-2. Ouvrez PowerShell dans le dossier de ce dépôt.
-3. Lancez le script avec le chemin de votre dossier de jeu :
+## Usage
+
+1. Close the game. In the game directory, make sure you have a backup from your installation named `Wow.exe.backup`.
+2. Open PowerShell in this repository's directory.
+3. Run the script with the path to your game directory:
 
    ```powershell
    .\Apply-WowLAA.ps1 -GameDirectory 'C:\Jeux\Wow 3.3.5'
    ```
 
-Le script refuse d'écraser un `Wow_LAA.exe` déjà présent. Si vous souhaitez le régénérer, déplacez ou renommez d'abord ce fichier vous-même. Vérifiez le résultat avant de remplacer votre manière habituelle de lancer le jeu.
+The script refuses to overwrite an existing `Wow_LAA.exe`. To generate it again, move or rename that file yourself first. Check the result before changing how you normally launch the game.
 
-Si PowerShell bloque l'exécution, vous pouvez lancer cette commande depuis le dossier du dépôt :
+If PowerShell blocks script execution, you can run this command from the repository directory:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Apply-WowLAA.ps1 -GameDirectory 'C:\Jeux\Wow 3.3.5'
 ```
 
-## Ce que fait le script
+## What the script does
 
-Il valide les signatures `MZ` et `PE`, vérifie que le fichier est un exécutable PE32 x86, active le bit `0x0020` dans le champ `Characteristics`, écrit un nouveau fichier et relit ce champ pour vérifier le résultat. Il ne garantit pas à lui seul la résolution de tous les plantages du jeu.
+It validates the `MZ` and `PE` signatures, checks that the file is a PE32 x86 executable, sets bit `0x0020` in the `Characteristics` field, writes a new file, and reads that field back to verify the result. This alone does not guarantee that every game crash will be fixed.
 
-## Publication
+## Publishing
 
-Publiez uniquement `Apply-WowLAA.ps1`, `README.md` et `.gitignore`. Le `.gitignore` écarte les exécutables et sauvegardes courants ; contrôlez toujours la liste des fichiers avant chaque envoi sur GitHub.
+Publish only the PowerShell script, this documentation, and `.gitignore`. The `.gitignore` excludes common executables and backup files; always check the file list before pushing changes to GitHub.
