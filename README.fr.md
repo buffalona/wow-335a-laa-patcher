@@ -11,10 +11,11 @@ Ce dépôt ne contient ni `Wow.exe`, ni `Wow_LAA.exe`, ni fichiers du jeu. Vous 
 Nécessite Windows et Windows PowerShell 5.1 ou PowerShell 7 en mode STA.
 
 1. Fermez le jeu.
-2. Ouvrez PowerShell dans le dossier de ce dépôt.
-3. Lancez le script pour ouvrir la fenêtre de sélection :
+2. Sur GitHub, cliquez sur **Code > Download ZIP**, puis faites un clic droit sur le ZIP téléchargé et choisissez **Extraire tout**. Ouvrez le dossier extrait contenant `Apply-WowLAA.ps1`.
+3. Dans la barre d'adresse de l'Explorateur, tapez `powershell` et appuyez sur Entrée. Lisez le script, puis lancez ces deux commandes pour débloquer ce fichier téléchargé et ouvrir la fenêtre de sélection :
 
    ```powershell
+   Unblock-File -LiteralPath .\Apply-WowLAA.ps1
    powershell.exe -NoProfile -STA -File .\Apply-WowLAA.ps1
    ```
 
@@ -22,13 +23,11 @@ Nécessite Windows et Windows PowerShell 5.1 ou PowerShell 7 en mode STA.
 
 Le script refuse d'écraser un `Wow_LAA.exe` déjà présent. Si vous souhaitez le régénérer, déplacez ou renommez d'abord ce fichier vous-même. Après un patch réussi, lancez `Wow_LAA.exe` pour utiliser la copie patchée. Le fichier `Wow.exe` d'origine reste utilisable.
 
-Si PowerShell bloque l'exécution, vous pouvez lancer cette commande depuis le dossier du dépôt :
+### Si PowerShell indique que le script n'est pas signé numériquement
 
-```powershell
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File .\Apply-WowLAA.ps1
-```
+Avec la stratégie d'exécution `RemoteSigned`, Windows peut bloquer un script non signé téléchargé depuis Internet. La commande `Unblock-File` ci-dessus retire la marque de téléchargement uniquement de ce fichier ; elle ne change pas votre stratégie d'exécution. Débloquez uniquement un script que vous avez lu et auquel vous faites confiance. Répétez cette étape si vous téléchargez une nouvelle copie.
 
-Exécutez uniquement des scripts que vous avez lus et auxquels vous faites confiance. Cette option de stratégie d'exécution s'applique à la session PowerShell lancée.
+Si l'exécution reste bloquée, lancez `Get-ExecutionPolicy -List` pour consulter les stratégies actives. Le déblocage d'un fichier ne satisfait pas une stratégie `AllSigned` et ne remplace pas les règles d'une organisation.
 
 ### Mode ligne de commande
 

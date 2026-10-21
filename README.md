@@ -11,10 +11,11 @@ This repository contains no `Wow.exe`, `Wow_LAA.exe`, or game files. You need yo
 Requires Windows and Windows PowerShell 5.1 or PowerShell 7 in STA mode.
 
 1. Close the game.
-2. Open PowerShell in this repository's directory.
-3. Run the script to open the file picker:
+2. On GitHub, click **Code > Download ZIP**, then right-click the downloaded ZIP and select **Extract All**. Open the extracted folder containing `Apply-WowLAA.ps1`.
+3. In File Explorer's address bar, type `powershell` and press Enter. Review the script, then run these two commands to unblock this downloaded file and open the file picker:
 
    ```powershell
+   Unblock-File -LiteralPath .\Apply-WowLAA.ps1
    powershell.exe -NoProfile -STA -File .\Apply-WowLAA.ps1
    ```
 
@@ -22,13 +23,11 @@ Requires Windows and Windows PowerShell 5.1 or PowerShell 7 in STA mode.
 
 The script refuses to overwrite an existing `Wow_LAA.exe`. To generate it again, move or rename that file yourself first. After a successful patch, launch `Wow_LAA.exe` to use the patched copy. You can still launch the original `Wow.exe` as before.
 
-If PowerShell blocks script execution, you can run this command from the repository directory:
+### If PowerShell says the script is not digitally signed
 
-```powershell
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File .\Apply-WowLAA.ps1
-```
+Under the `RemoteSigned` execution policy, Windows may block an unsigned script downloaded from the Internet. The `Unblock-File` command above removes the Internet download mark from this file only; it does not change your execution policy. Only unblock a script you have reviewed and trust. Repeat this step when downloading a new copy.
 
-Only run scripts you have reviewed and trust. This execution-policy option applies to the launched PowerShell session.
+If execution is still blocked, run `Get-ExecutionPolicy -List` to check the policies in effect. Unblocking a file does not satisfy an `AllSigned` policy or override an organization's policy.
 
 ### Command-line mode
 
